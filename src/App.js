@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import Home from './pages/Home';
@@ -36,11 +36,11 @@ function App() {
         <Router>
           <Header />
           <div className='container'>
-            <Routes>
-              <Route path='/' element={<Home />} />
-              <Route path='/projects/:id' element={<Project />} />
-              <Route path='*' element={<NotFound />} />
-            </Routes>
+            <Switch>
+              <Route exact path='/' component={Home} />
+              <Route path='/projects/:id' component={Project} />
+              <Route component={NotFound} />
+            </Switch>
           </div>
         </Router>
       </ApolloProvider>
